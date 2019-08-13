@@ -11,12 +11,13 @@ open class HeadlineViewmodel : BaseViewModel() {
     val headlineLiveData: MutableLiveData<MutableList<HeadlineEntity>> by lazy {
         MutableLiveData<MutableList<HeadlineEntity>>()
     }
+
     fun fetchHeadlines() {
         repository.getAllHeadlines {
-            if(it){
+            if (it) {
                 println("Found headlines")
 
-            } else{
+            } else {
                 println("No headlines found")
             }
             updateCurrencyLiveData()

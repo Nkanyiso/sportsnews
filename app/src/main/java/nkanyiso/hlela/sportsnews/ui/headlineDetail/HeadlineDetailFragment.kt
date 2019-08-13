@@ -2,16 +2,16 @@ package nkanyiso.hlela.sportsnews.ui.headlineDetail
 
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_headline_detail.view.*
-import kotlinx.android.synthetic.main.headline_fragment.view.*
 import nkanyiso.hlela.sportsnews.R
 import nkanyiso.hlela.sportsnews.data.ArticleModel
-import nkanyiso.hlela.sportsnews.data.database.entity.HeadlineEntity
 
 
 class HeadlineDetailFragment : androidx.fragment.app.Fragment() {
@@ -21,11 +21,9 @@ class HeadlineDetailFragment : androidx.fragment.app.Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-     //   requireActivity().actionBar.title="Headline Details"
-      //  this.activity!!.title = getString(R.string.lbl_artictle)
-       var articleUrl = arguments?.getString("articleUrl")
-        val view =  inflater.inflate(R.layout.fragment_headline_detail, container, false)
+
+        var articleUrl = arguments?.getString("articleUrl")
+        val view = inflater.inflate(R.layout.fragment_headline_detail, container, false)
         viewModel = ViewModelProviders.of(this).get(HeadlineDetailViewmodel::class.java)
         viewModel.fetchArticle(articleUrl)
 
@@ -33,16 +31,24 @@ class HeadlineDetailFragment : androidx.fragment.app.Fragment() {
             override fun onChanged(t: ArticleModel?) {
                 if (t != null) {
 
-//                        view.articleContent.visibility = View.VISIBLE
-                        view.lbl_headline.text=t.Headline
-                        view.lbl_date.text=t.DateCreated
-                        view.noArticle.visibility = View.GONE
-                    } else {
-//                        view.articleContent.visibility = View.GONE
-                        if (view.noArticle.visibility == View.GONE) {
-                            view.noArticle.visibility = View.VISIBLE
-                        }
+                    view.article_group.visibility = View.VISIBLE
+                    view.dt_headline.text = t.Headline
+                    view.dt_date.text = t.DateCreated
+                    view.dt_article_body.text = Html.fromHtml(t.Body)
+                    val imageView = view.dt_article_image
+                    imageView.contentDescription = t.LargeImageAlt
+                    val currentUrl = t.ImageUrlLocal + t.LargeImageName
+
+                    Glide.with(view)
+                        .load(currentUrl)
+                        .into(imageView)
+                    view.dt_no_article.visibility = View.GONE
+                } else {
+                    view.article_group.visibility = View.GONE
+                    if (view.dt_no_article.visibility == View.GONE) {
+                        view.dt_no_article.visibility = View.VISIBLE
                     }
+                }
 
             }
         })

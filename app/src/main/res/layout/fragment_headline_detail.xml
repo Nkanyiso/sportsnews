@@ -1,27 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-             tools:context=".ui.headlineDetail.HeadlineDetailFragment">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_height="match_parent" android:layout_width="match_parent">
+    <FrameLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            tools:context=".ui.headlineDetail.HeadlineDetailFragment">
 
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                   android:layout_height="wrap_content">
-<!--<view android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/articleContent">-->
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-              app:layout_constraintStart_toStartOf="parent" android:id="@+id/lbl_headline"
-    app:layout_constraintTop_toTopOf="parent"/>
-    <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
-              android:id="@+id/lbl_date" app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toBottomOf="@id/lbl_headline"/>
-    <ImageView android:layout_width="match_parent" android:layout_height="250dp"
-        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/lbl_headline"/>
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content"
+        >
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      app:layout_constraintStart_toStartOf="parent" android:id="@+id/dt_headline"
+                      android:textStyle="bold" android:textSize="25sp" android:textColor="@color/black"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintBottom_toTopOf="@id/dt_date"
+                      app:layout_constraintTop_toTopOf="parent" android:padding="@dimen/detail_padding"/>
 
-<!--</view>-->
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/noArticle" android:text="@string/no_article"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:id="@+id/dt_date" app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      android:textAlignment="viewStart"
+                      app:layout_constraintTop_toBottomOf="@id/dt_headline"
+                      android:layout_marginBottom="@dimen/detail_padding"
+                      android:layout_marginStart="@dimen/detail_padding"
+                      android:layout_marginEnd="@dimen/detail_padding"/>
 
-</FrameLayout>
+            <ImageView android:layout_width="match_parent" android:layout_height="250dp"
+                       android:id="@+id/dt_article_image"
+                       app:layout_constraintStart_toStartOf="parent"
+                       android:contentDescription="@string/app_name"
+                       app:layout_constraintTop_toBottomOf="@id/dt_date"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:id="@+id/dt_article_body" app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintTop_toBottomOf="@id/dt_article_image"
+                      android:padding="@dimen/detail_padding"/>
+
+            <!--when no article is loaded-->
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:id="@+id/dt_no_article" android:text="@string/no_article"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            <androidx.constraintlayout.widget.Group
+                    android:id="@+id/article_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:constraint_referenced_ids="dt_headline,dt_article_image,dt_headline"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</ScrollView>

@@ -8,8 +8,6 @@ import nkanyiso.hlela.sportsnews.data.database.dao.HeadlineDao
 import nkanyiso.hlela.sportsnews.data.database.entity.HeadlineEntity
 
 
-
-
 const val DATABASE_VERSION = 1
 const val DATABASE_NAME = "news_db"
 
@@ -20,7 +18,7 @@ const val DATABASE_NAME = "news_db"
     version = DATABASE_VERSION,
     exportSchema = false
 )
-//@TypeConverters(Converters::class)
+
 abstract class NewsDatabase : RoomDatabase() {
     abstract fun provideHeadline(): HeadlineDao
 

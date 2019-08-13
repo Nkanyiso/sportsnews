@@ -12,12 +12,13 @@ open class HeadlineDetailViewmodel : BaseViewModel() {
     val articleLiveData: MutableLiveData<ArticleModel> by lazy {
         MutableLiveData<ArticleModel>()
     }
+
     fun fetchArticle(articleUrl: String?) {
         repository.getArticle(articleUrl) {
-            if(it != null){
+            if (it != null) {
                 println("Found article")
 
-            } else{
+            } else {
                 println("No article found")
             }
             updateCurrencyLiveData(it)

@@ -12,7 +12,7 @@ import nkanyiso.hlela.sportsnews.Utils.convertMilliSeondsToStringDate
 import java.text.SimpleDateFormat
 
 
-class HeadlineAdapter(private var items: MutableList<HeadlineEntity>,private var itemClick: ItemClick) :
+class HeadlineAdapter(private var items: MutableList<HeadlineEntity>, private var itemClick: ItemClick) :
     androidx.recyclerview.widget.RecyclerView.Adapter<HeadlineAdapter.ViewHolder>() {
 
 
@@ -33,26 +33,27 @@ class HeadlineAdapter(private var items: MutableList<HeadlineEntity>,private var
 
         viewholder.view.headline.text = dataItem.Headline
         viewholder.view.site_name.text = dataItem.SiteName
+        if (dataItem.SiteName == "") {
+            viewholder.view.site_name.visibility = View.GONE
+        } else {
+            viewholder.view.site_name.visibility = View.VISIBLE
+        }
         val formatter = SimpleDateFormat("yyyy-dd-MM")
-        viewholder.view.date_created.text = convertMilliSeondsToStringDate(dataItem.DateCreated,formatter)
+        viewholder.view.date_created.text = convertMilliSeondsToStringDate(dataItem.DateCreated, formatter)
         viewholder.view.blurb.text = dataItem.Blurb
 
 
         viewholder.view.setOnClickListener {
             itemClick.setClick(dataItem)
         }
-        val imageView =  viewholder.view.media_image
+        val imageView = viewholder.view.media_image
 
-        val currentUrl = dataItem.ImageUrlRemote + dataItem.SmallImageName //"http://images.supersport.com/2019/4/Phil-Foden-190404-Gsm.jpg"
+        val currentUrl = dataItem.ImageUrlRemote + dataItem.SmallImageName
 
         Glide.with(viewholder.view)
             .load(currentUrl)
-           //override(imageWidthPixels, imageHeightPixels)
-            .into(imageView)
 
-//        if (dataItem.monitored) viewholder.view.image_view_button.setImageResource(R.drawable.ic_menu_delete) else {
-//            viewholder.view.image_view_button.setImageResource(R.drawable.ic_input_add)
-//        }
+            .into(imageView)
 
 
     }
