@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/headlineFragment">
+
+    <fragment android:id="@+id/headlineFragment" android:name="nkanyiso.hlela.sportsnews.ui.headlineScreen.HeadlineFragment"
+              android:label="@string/lbl_news" tools:layout="@layout/headline_fragment">
+        <action android:id="@+id/action_headlineFragment_to_headlineDetailFragment2"
+                app:destination="@id/headlineDetailFragment">
+
+
+        </action>
+    </fragment>
+    <fragment android:id="@+id/headlineDetailFragment" android:name="nkanyiso.hlela.sportsnews.ui.headlineDetail.HeadlineDetailFragment"
+              android:label="@string/lbl_news" tools:layout="@layout/fragment_headline_detail">
+        <argument android:name="urlToArticle" app:argType="string"></argument>
+    </fragment>
+</navigation>

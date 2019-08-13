@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+             tools:context=".ui.headlineDetail.HeadlineDetailFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content">
+<!--<view android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/articleContent">-->
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              app:layout_constraintStart_toStartOf="parent" android:id="@+id/lbl_headline"
+    app:layout_constraintTop_toTopOf="parent"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+              android:id="@+id/lbl_date" app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/lbl_headline"/>
+    <ImageView android:layout_width="match_parent" android:layout_height="250dp"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/lbl_headline"/>
+
+<!--</view>-->
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/noArticle" android:text="@string/no_article"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

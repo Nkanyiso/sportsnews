@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sports News</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_sports_news">No sports news</string>
+    <string name="lbl_artictle">Article</string>
+    <string name="lbl_news">News</string>
+    <string name="no_article">Failed to load Article.</string>
+</resources>
